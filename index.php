@@ -19,7 +19,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <!-- bootstrap above -->
-
+    
+    <title>Vocanote</title>
+    
     <style>
         .title_font{
             color: rgb(128, 128, 128);
@@ -53,7 +55,7 @@
             color: white;
         }
         .button_style2{
-            background-color: rgb(146, 86, 86); 
+            background-color: rgb(146, 86, 86); <!--red-->
             border: none;
             color: white;
         }
@@ -68,6 +70,24 @@
         }
         .nav-link{
             color:white;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: rgb(146, 86, 86);
+        }
+        .col-form-label {
+            color:rgb(128, 128, 128);
+            font-weight: 500;
+        }
+        .form-control {
+            border: transparent;
+            padding-left:20px;
+            border-radius: 6px;
+
+        }
+        .btn-secondary {
+            border-color: transparent;
         }
     </style>
 </head>
@@ -77,10 +97,10 @@
         <div>
             <div style="background-color: rgb(246, 240, 228); outline:solid; border-radius: 2px; box-shadow: 0 0 0 10px rgb(128, 128, 128); " class="jumbotron bg-cover header p-3">
                 <div class="container py-5 text-center" style="padding: 10px">
-                    <h1 class="font-weight-bold">This is Vocanote.</h1>
+                    <h1 class="font-weight-bold" href="index.php">This is Vocanote.</h1>
                     <p class="font-italic">Your first free vocabulary notebook.</p>
                     <p class="font-italic">Developed by
-                        <a href="https://bootstrapious.com" style="color:rgb(128, 128, 128);">
+                        <a href="#" style="color:rgb(128, 128, 128);">
                             <u>WEN-TING CHANG</u>
                         </a>
                     </p>
@@ -94,24 +114,21 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="submit" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filter type
+                    <li class="nav-item" >
+                        <a class="navbar-brand" href="index.php">
+                            <img src="greyhome_icon.png" width="50" height="50" alt="back to main page" ;>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> <!--ul:unorder list /li:list--> 
-                        <li><a class="dropdown-item" href="#">Join Date ascending</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Part of Speech descending</a></li>
-                        <li><a class="dropdown-item" href="#">Part of Speech ascending</a></li>
-                        </ul>
+                    </li>
+                    <li class="nav-item" >
+                        <a class="nav-link" href="insert.php">Add a new voca!</a>
+                    </li>
+                    <li class="nav-item" style="padding-right: 800px;">
+                        <a class="nav-link" href="#">External link</a>
                     </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Voca or Meaning" aria-label="Search" style="border: none;">
-                        <button class="btn btn-secondary button_style" type="submit" >Search</button>
+                    <form class="d-flex" action="search_result.php" method="post" >
+                        <input class="form-control me-2" type="text" placeholder="Voca or Meaning" aria-label="Search" style="border: none ;" name="voca_input" >
+                            <input type="submit" class="btn btn-secondary button_style"  role="button" aria-disabled="true" name="voca_search">                 
                     </form>
                 </div>
                 </div>
@@ -157,11 +174,13 @@
                                         <td>'.$n.'</td>
                                         <td>
                                             <form action="edit.php" method="post">
-                                                <button type="submit" class="btn btn-primary"  name="edit_serial_num" value="'.$serial_number.'">update</button>
+                                                <button type="submit" class="btn btn-secondary button_style3"  name="edit_serial_num" value="'.$serial_number.'">update</button>
                                             </form>
                                         </td>
                                         <td>
-                                            <button type="submit" class="btn btn-secondary button_style2">Delete</button>
+                                            <form action = "bridge.php" method="post">
+                                                <button type="submit" class="btn btn-secondary button_style2" name="delete_btn" value="'.$serial_number.'">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>';
                                 

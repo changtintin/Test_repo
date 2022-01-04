@@ -19,7 +19,7 @@
         if($meaning!=""){
             if (mysqli_query($connect, $sqlStr)) {
                 echo "插入資料成功";
-                header("Location: interface.php");
+                header("Location: index.php");
                 
             } 
             else {
@@ -27,14 +27,43 @@
             }
         }
         else{
-            header("Location:interface.php");
+            header("Location:index.php");
         }
-    
-    if(isset($_POST['edit_submit'])){
-        if($_POST['ve']!=" "){
+
+        if(isset($_POST['edit_submit'])){
+           
+            if($_POST['ve'] != ""){
+                $edit = "UPDATE `vocabulary` SET `vocabulary`='{$_POST['ve']}' WHERE `serial_number` = '{$_POST['se']}'"; 
+                mysqli_query($connect, $edit);
+            }
+            if($_POST['je'] != ""){
+                $edit = "UPDATE `vocabulary` SET `join_date`='{$_POST['je']}' WHERE `serial_number` = '{$_POST['se']}'";
+                mysqli_query($connect, $edit);
+            }
+            if($_POST['me'] != ""){
+                $edit = "UPDATE `vocabulary` SET  `meaning`='{$_POST['me']}' WHERE `serial_number` = '{$_POST['se']}'";
+                mysqli_query($connect, $edit);
+
+            }
+            if($_POST['pe'] != ""){
+                $edit = "UPDATE `vocabulary` SET `part_of_speech`='{$_POST['pe']}' WHERE `serial_number` = '{$_POST['se']}'";
+                mysqli_query($connect, $edit);
+            }
+            if($_POST['ne'] != ""){
+                $edit = "UPDATE `vocabulary` SET `note`='{$_POST['ne']}' WHERE `serial_number` = '{$_POST['se']}'";
+                mysqli_query($connect, $edit);
+            }
             
+
+            header("Location:index.php");
         }
-    }
 
+        if(isset($_POST['delete_btn'])){
+            $delete = "DELETE FROM `vocabulary` WHERE `serial_number` = '{$_POST['delete_btn']}'";
+            mysqli_query($connect, $delete);
+            header("Location:index.php");
+        }
 
+        
+        
 ?>
