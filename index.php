@@ -21,75 +21,9 @@
     <!-- bootstrap above -->
     
     <title>Vocanote</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css"> 
     
-    <style>
-        .title_font{
-            color: rgb(128, 128, 128);
-            font-size: 20px;
-            padding: 3px;
-        }
-        .bg-cover {
-            background-size: cover !important;
-        }
-        .header{
-            border-style: solid;
-            border-width: 7px;
-            border-color: rgb(128, 128, 128);
-            color:rgb(128, 128, 128);
-        }
-        .h1{
-            padding-bottom: 25px;
-        }
-        .outline{
-            background-color: rgb(246, 240, 228);
-            border-style: solid;
-            border-color: rgb(246, 240, 228);
-            padding: 25px;
-        }
-        .body{
-            background-color: rgb(246, 240, 228);;
-        }
-        .button_style{
-            background-color: rgb(128, 128, 128); 
-            border: none;
-            color: white;
-        }
-        .button_style2{
-            background-color: rgb(146, 86, 86); <!--red-->
-            border: none;
-            color: white;
-        }
-        .button_style3{
-            background-color: rgb(204, 152, 118); 
-            border: none;
-            color: white;
-        }
-        .navbar{
-            margin: 20px;
-            border-radius: 10px;
-        }
-        .nav-link{
-            color:white;
-            font-weight: 500;
-        }
-
-        a:hover {
-            color: rgb(146, 86, 86);
-        }
-        .col-form-label {
-            color:rgb(128, 128, 128);
-            font-weight: 500;
-        }
-        .form-control {
-            border: transparent;
-            padding-left:20px;
-            border-radius: 6px;
-
-        }
-        .btn-secondary {
-            border-color: transparent;
-        }
-    </style>
 </head>
 <body class="body">
    
@@ -140,22 +74,7 @@
             $result = mysqli_query($connect, $select); //針對某個資料庫（參數一）做SQL語法指令（參數二）
 
             if(mysqli_num_rows($result) > 0) { //回傳的列數
-                echo '<div class="container" style="padding-top: 50px;">
-                        <table class="table table-striped table-hover" >
-                            <thead class="title_font">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Vocabulary</th>
-                                    <th scope="col">Join Date</th>
-                                    <th scope="col">Meaning</th>
-                                    <th scope="col">Part of Speech</th>
-                                    <th scope="col">Note</th>
-                                    <th scope="col">Update</th>
-                                    <th scope="col">Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>';
-
+                include("table_fixed.php");
                             $count = 1;
                             while($row = mysqli_fetch_assoc($result)) { //抓下來資料表是一個array 以json存取 e.g. meaning（key) \冷的(value)
                                 $v = $row["vocabulary"]; // vocabulary = array的index
@@ -186,7 +105,6 @@
                                 
                                 $count ++;
                             }
-
                 echo       '</tbody>
                         </table>
                     </div>';
